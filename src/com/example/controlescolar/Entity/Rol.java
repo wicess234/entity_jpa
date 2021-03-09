@@ -17,8 +17,13 @@ public class Rol implements Serializable {
 	@Column(name="ROL_ID")
 	private int rolId;
 
-	@Column(name="ROL_DESC")
-	private String rolDesc;
+	@Column(name="ROL_DES")
+	private String rolDes;
+
+	//bi-directional one-to-one association to Sesion
+	@OneToOne
+	@JoinColumn(name="ROL_ID")
+	private Sesion sesion;
 
 	public Rol() {
 	}
@@ -31,12 +36,20 @@ public class Rol implements Serializable {
 		this.rolId = rolId;
 	}
 
-	public String getRolDesc() {
-		return this.rolDesc;
+	public String getRolDes() {
+		return this.rolDes;
 	}
 
-	public void setRolDesc(String rolDesc) {
-		this.rolDesc = rolDesc;
+	public void setRolDes(String rolDes) {
+		this.rolDes = rolDes;
+	}
+
+	public Sesion getSesion() {
+		return this.sesion;
+	}
+
+	public void setSesion(Sesion sesion) {
+		this.sesion = sesion;
 	}
 
 }

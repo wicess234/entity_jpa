@@ -16,16 +16,13 @@ public class Spbper implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="SPBPERS_ID")
-	private int spbpersId;
-
-	@Column(name="SPBPERS_CIVIL")
-	private String spbpersCivil;
+	@Column(name="SPBPERS_NUMSEQ")
+	private int spbpersNumseq;
 
 	@Column(name="SPBPERS_FALLECIDO")
 	private String spbpersFallecido;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name="SPBPERS_FECH_NAC")
 	private Date spbpersFechNac;
 
@@ -35,27 +32,27 @@ public class Spbper implements Serializable {
 	@Column(name="SPBPERS_USER")
 	private String spbpersUser;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="SPRIDEN_ACTIVITY_DAT")
-	private Date spridenActivityDat;
+	@Column(name="SPBPESR_CIVIL")
+	private String spbpesrCivil;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="SPRIDEN_ACTIVITY_DATE")
+	private Date spridenActivityDate;
+
+	//bi-directional many-to-one association to Spriden
+	@ManyToOne
+	@JoinColumn(name="SPBPERS_MATRICULA")
+	private Spriden spriden;
 
 	public Spbper() {
 	}
 
-	public int getSpbpersId() {
-		return this.spbpersId;
+	public int getSpbpersNumseq() {
+		return this.spbpersNumseq;
 	}
 
-	public void setSpbpersId(int spbpersId) {
-		this.spbpersId = spbpersId;
-	}
-
-	public String getSpbpersCivil() {
-		return this.spbpersCivil;
-	}
-
-	public void setSpbpersCivil(String spbpersCivil) {
-		this.spbpersCivil = spbpersCivil;
+	public void setSpbpersNumseq(int spbpersNumseq) {
+		this.spbpersNumseq = spbpersNumseq;
 	}
 
 	public String getSpbpersFallecido() {
@@ -90,12 +87,28 @@ public class Spbper implements Serializable {
 		this.spbpersUser = spbpersUser;
 	}
 
-	public Date getSpridenActivityDat() {
-		return this.spridenActivityDat;
+	public String getSpbpesrCivil() {
+		return this.spbpesrCivil;
 	}
 
-	public void setSpridenActivityDat(Date spridenActivityDat) {
-		this.spridenActivityDat = spridenActivityDat;
+	public void setSpbpesrCivil(String spbpesrCivil) {
+		this.spbpesrCivil = spbpesrCivil;
+	}
+
+	public Date getSpridenActivityDate() {
+		return this.spridenActivityDate;
+	}
+
+	public void setSpridenActivityDate(Date spridenActivityDate) {
+		this.spridenActivityDate = spridenActivityDate;
+	}
+
+	public Spriden getSpriden() {
+		return this.spriden;
+	}
+
+	public void setSpriden(Spriden spriden) {
+		this.spriden = spriden;
 	}
 
 }

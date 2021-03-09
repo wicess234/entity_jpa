@@ -1,7 +1,11 @@
 package com.example.controlescolar.Entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -14,28 +18,32 @@ public class Stvcarr implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="CARRERA_ID")
-	private int carreraId;
+	@Column(name="STVCARR_ID")
+	private String stvcarrId;
 
-	private String CARRERA_deSC;
+	@Column(name="STVCARR_DES")
+	private String stvcarrDes;
+
+	//bi-directional many-to-one association to Opccarr
 
 	public Stvcarr() {
 	}
 
-	public int getCarreraId() {
-		return this.carreraId;
+	public String getStvcarrId() {
+		return this.stvcarrId;
 	}
 
-	public void setCarreraId(int carreraId) {
-		this.carreraId = carreraId;
+	public void setStvcarrId(String stvcarrId) {
+		this.stvcarrId = stvcarrId;
 	}
 
-	public String getCARRERA_deSC() {
-		return this.CARRERA_deSC;
+	public String getStvcarrDes() {
+		return this.stvcarrDes;
 	}
 
-	public void setCARRERA_deSC(String CARRERA_deSC) {
-		this.CARRERA_deSC = CARRERA_deSC;
+	public void setStvcarrDes(String stvcarrDes) {
+		this.stvcarrDes = stvcarrDes;
 	}
+
 
 }

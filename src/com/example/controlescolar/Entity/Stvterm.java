@@ -2,6 +2,7 @@ package com.example.controlescolar.Entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Set;
 
 
 /**
@@ -14,28 +15,32 @@ public class Stvterm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="PERIODO_ID",insertable = true, updatable = true)
-	private int periodoId;
+	@Column(name="STVTERM_ID")
+	private String stvtermId;
 
-	private String PERIODO_dESC;
+	@Column(name="STVTERM_DESC")
+	private String stvtermDesc;
+
 
 	public Stvterm() {
 	}
 
-	public int getPeriodoId() {
-		return this.periodoId;
+	public String getStvtermId() {
+		return this.stvtermId;
 	}
 
-	public void setPeriodoId(int periodoId) {
-		this.periodoId = periodoId;
+	public void setStvtermId(String stvtermId) {
+		this.stvtermId = stvtermId;
 	}
 
-	public String getPERIODO_dESC() {
-		return this.PERIODO_dESC;
+	public String getStvtermDesc() {
+		return this.stvtermDesc;
 	}
 
-	public void setPERIODO_dESC(String PERIODO_dESC) {
-		this.PERIODO_dESC = PERIODO_dESC;
+	public void setStvtermDesc(String stvtermDesc) {
+		this.stvtermDesc = stvtermDesc;
 	}
+
+
 
 }

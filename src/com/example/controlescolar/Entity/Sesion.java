@@ -23,8 +23,14 @@ public class Sesion implements Serializable {
 	@Column(name="SESION_TOKEN")
 	private int sesionToken;
 
-	@Column(name="SESION_USUARIO_ID")
-	private int sesionUsuarioId;
+	//bi-directional one-to-one association to Rol
+	@OneToOne(mappedBy="sesion")
+	private Rol rol;
+
+	//bi-directional many-to-one association to Spriden
+	@ManyToOne
+	@JoinColumn(name="SESION_MATRICULA")
+	private Spriden spriden;
 
 	public Sesion() {
 	}
@@ -53,12 +59,20 @@ public class Sesion implements Serializable {
 		this.sesionToken = sesionToken;
 	}
 
-	public int getSesionUsuarioId() {
-		return this.sesionUsuarioId;
+	public Rol getRol() {
+		return this.rol;
 	}
 
-	public void setSesionUsuarioId(int sesionUsuarioId) {
-		this.sesionUsuarioId = sesionUsuarioId;
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
+	public Spriden getSpriden() {
+		return this.spriden;
+	}
+
+	public void setSpriden(Spriden spriden) {
+		this.spriden = spriden;
 	}
 
 }

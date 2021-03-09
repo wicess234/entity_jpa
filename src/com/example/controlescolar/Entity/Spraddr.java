@@ -15,11 +15,23 @@ public class Spraddr implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="SPRADDR_ID")
-	private int spraddrId;
+	@Column(name="SPRADDR_NUMSEQ")
+	private int spraddrNumseq;
 
-	@Column(name="SPRADDR_CALLE")
-	private String spraddrCalle;
+	@Column(name="PRADDR_CALLE")
+	private String praddrCalle;
+
+	@Column(name="PRADDR_CP")
+	private String praddrCp;
+
+	@Column(name="PRADDR_MUN_O_DEL")
+	private String praddrMunODel;
+
+	@Column(name="PRADDR_NUM")
+	private String praddrNum;
+
+	@Column(name="PRADDR_PAIS")
+	private String praddrPais;
 
 	@Column(name="SPRADDR_CIUDAD")
 	private String spraddrCiudad;
@@ -27,57 +39,77 @@ public class Spraddr implements Serializable {
 	@Column(name="SPRADDR_COLONIA")
 	private String spraddrColonia;
 
-	@Column(name="SPRADDR_CP")
-	private String spraddrCp;
-
 	@Column(name="SPRADDR_ESTADO")
 	private String spraddrEstado;
 
-	@Column(name="SPRADDR_MUN_O_DEL")
-	private String spraddrMunODel;
+	@Temporal(TemporalType.DATE)
+	@Column(name="SPRIDEN_ACTIVITY_DATE")
+	private Date spridenActivityDate;
 
-	@Column(name="SPRADDR_NUM")
-	private String spraddrNum;
+	@Column(name="SRIDEN_USER")
+	private String sridenUser;
 
-	@Column(name="SPRADDR_NUMSEQ")
-	private String spraddrNumseq;
+	@Column(name="STVATYP_TIPO")
+	private String stvatypTipo;
 
-	@Column(name="SPRADDR_PAIS")
-	private String spraddrPais;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date SPRIDEN_aCTIVITY_DAT;
-
-	@Column(name="SPRIDEN_USER")
-	private String spridenUser;
-
-	//bi-directional many-to-one association to Stvtype
+	//bi-directional many-to-one association to Spriden
 	@ManyToOne
-	@JoinColumn(name="SPRADDR_TIPO",insertable = false,updatable = false)
-	private Stvtype stvtype1;
+	@JoinColumn(name="SPRADDR_MATRICULA")
+	private Spriden spriden;
 
-	//bi-directional many-to-one association to Stvtype
-	@ManyToOne
-	@JoinColumn(name="SPRADDR_TIPO",insertable = false,updatable = false)
-	private Stvtype stvtype2;
+	//bi-directional one-to-one association to Stvatyp
+	@OneToOne(mappedBy="spraddr")
+	private Stvatyp stvatyp;
 
 	public Spraddr() {
 	}
 
-	public int getSpraddrId() {
-		return this.spraddrId;
+	public int getSpraddrNumseq() {
+		return this.spraddrNumseq;
 	}
 
-	public void setSpraddrId(int spraddrId) {
-		this.spraddrId = spraddrId;
+	public void setSpraddrNumseq(int spraddrNumseq) {
+		this.spraddrNumseq = spraddrNumseq;
 	}
 
-	public String getSpraddrCalle() {
-		return this.spraddrCalle;
+	public String getPraddrCalle() {
+		return this.praddrCalle;
 	}
 
-	public void setSpraddrCalle(String spraddrCalle) {
-		this.spraddrCalle = spraddrCalle;
+	public void setPraddrCalle(String praddrCalle) {
+		this.praddrCalle = praddrCalle;
+	}
+
+	public String getPraddrCp() {
+		return this.praddrCp;
+	}
+
+	public void setPraddrCp(String praddrCp) {
+		this.praddrCp = praddrCp;
+	}
+
+	public String getPraddrMunODel() {
+		return this.praddrMunODel;
+	}
+
+	public void setPraddrMunODel(String praddrMunODel) {
+		this.praddrMunODel = praddrMunODel;
+	}
+
+	public String getPraddrNum() {
+		return this.praddrNum;
+	}
+
+	public void setPraddrNum(String praddrNum) {
+		this.praddrNum = praddrNum;
+	}
+
+	public String getPraddrPais() {
+		return this.praddrPais;
+	}
+
+	public void setPraddrPais(String praddrPais) {
+		this.praddrPais = praddrPais;
 	}
 
 	public String getSpraddrCiudad() {
@@ -96,14 +128,6 @@ public class Spraddr implements Serializable {
 		this.spraddrColonia = spraddrColonia;
 	}
 
-	public String getSpraddrCp() {
-		return this.spraddrCp;
-	}
-
-	public void setSpraddrCp(String spraddrCp) {
-		this.spraddrCp = spraddrCp;
-	}
-
 	public String getSpraddrEstado() {
 		return this.spraddrEstado;
 	}
@@ -112,68 +136,44 @@ public class Spraddr implements Serializable {
 		this.spraddrEstado = spraddrEstado;
 	}
 
-	public String getSpraddrMunODel() {
-		return this.spraddrMunODel;
+	public Date getSpridenActivityDate() {
+		return this.spridenActivityDate;
 	}
 
-	public void setSpraddrMunODel(String spraddrMunODel) {
-		this.spraddrMunODel = spraddrMunODel;
+	public void setSpridenActivityDate(Date spridenActivityDate) {
+		this.spridenActivityDate = spridenActivityDate;
 	}
 
-	public String getSpraddrNum() {
-		return this.spraddrNum;
+	public String getSridenUser() {
+		return this.sridenUser;
 	}
 
-	public void setSpraddrNum(String spraddrNum) {
-		this.spraddrNum = spraddrNum;
+	public void setSridenUser(String sridenUser) {
+		this.sridenUser = sridenUser;
 	}
 
-	public String getSpraddrNumseq() {
-		return this.spraddrNumseq;
+	public String getStvatypTipo() {
+		return this.stvatypTipo;
 	}
 
-	public void setSpraddrNumseq(String spraddrNumseq) {
-		this.spraddrNumseq = spraddrNumseq;
+	public void setStvatypTipo(String stvatypTipo) {
+		this.stvatypTipo = stvatypTipo;
 	}
 
-	public String getSpraddrPais() {
-		return this.spraddrPais;
+	public Spriden getSpriden() {
+		return this.spriden;
 	}
 
-	public void setSpraddrPais(String spraddrPais) {
-		this.spraddrPais = spraddrPais;
+	public void setSpriden(Spriden spriden) {
+		this.spriden = spriden;
 	}
 
-	public Date getSPRIDEN_aCTIVITY_DAT() {
-		return this.SPRIDEN_aCTIVITY_DAT;
+	public Stvatyp getStvatyp() {
+		return this.stvatyp;
 	}
 
-	public void setSPRIDEN_aCTIVITY_DAT(Date SPRIDEN_aCTIVITY_DAT) {
-		this.SPRIDEN_aCTIVITY_DAT = SPRIDEN_aCTIVITY_DAT;
-	}
-
-	public String getSpridenUser() {
-		return this.spridenUser;
-	}
-
-	public void setSpridenUser(String spridenUser) {
-		this.spridenUser = spridenUser;
-	}
-
-	public Stvtype getStvtype1() {
-		return this.stvtype1;
-	}
-
-	public void setStvtype1(Stvtype stvtype1) {
-		this.stvtype1 = stvtype1;
-	}
-
-	public Stvtype getStvtype2() {
-		return this.stvtype2;
-	}
-
-	public void setStvtype2(Stvtype stvtype2) {
-		this.stvtype2 = stvtype2;
+	public void setStvatyp(Stvatyp stvatyp) {
+		this.stvatyp = stvatyp;
 	}
 
 }

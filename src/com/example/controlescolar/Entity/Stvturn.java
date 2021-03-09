@@ -1,7 +1,11 @@
 package com.example.controlescolar.Entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -14,10 +18,10 @@ public class Stvturn implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="STVTURN_ID", insertable = true, updatable = true)
+	@Column(name="STVTURN_ID")
 	private String stvturnId;
 
-	@Column(name="STVTURN_DESC", insertable = true, updatable = true)
+	@Column(name="STVTURN_DESC")
 	private String stvturnDesc;
 
 	public Stvturn() {
@@ -38,5 +42,7 @@ public class Stvturn implements Serializable {
 	public void setStvturnDesc(String stvturnDesc) {
 		this.stvturnDesc = stvturnDesc;
 	}
+
+
 
 }
