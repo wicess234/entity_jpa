@@ -2,7 +2,7 @@ package com.example.controlescolar.Entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 
 /**
@@ -21,6 +21,9 @@ public class Stvterm implements Serializable {
 	@Column(name="STVTERM_DESC")
 	private String stvtermDesc;
 
+	//bi-directional many-to-one association to Opccarr
+	@OneToMany(mappedBy="stvterm")
+	private List<Opccarr> opccarrs;
 
 	public Stvterm() {
 	}
@@ -41,6 +44,26 @@ public class Stvterm implements Serializable {
 		this.stvtermDesc = stvtermDesc;
 	}
 
+	public List<Opccarr> getOpccarrs() {
+		return this.opccarrs;
+	}
 
+	public void setOpccarrs(List<Opccarr> opccarrs) {
+		this.opccarrs = opccarrs;
+	}
+
+	public Opccarr addOpccarr(Opccarr opccarr) {
+		getOpccarrs().add(opccarr);
+		opccarr.setStvterm(this);
+
+		return opccarr;
+	}
+
+	public Opccarr removeOpccarr(Opccarr opccarr) {
+		getOpccarrs().remove(opccarr);
+		opccarr.setStvterm(null);
+
+		return opccarr;
+	}
 
 }

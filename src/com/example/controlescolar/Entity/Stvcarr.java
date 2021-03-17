@@ -1,11 +1,8 @@
 package com.example.controlescolar.Entity;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -25,6 +22,8 @@ public class Stvcarr implements Serializable {
 	private String stvcarrDes;
 
 	//bi-directional many-to-one association to Opccarr
+	@OneToMany(mappedBy="stvcarr")
+	private List<Opccarr> opccarrs;
 
 	public Stvcarr() {
 	}
@@ -45,5 +44,26 @@ public class Stvcarr implements Serializable {
 		this.stvcarrDes = stvcarrDes;
 	}
 
+	public List<Opccarr> getOpccarrs() {
+		return this.opccarrs;
+	}
+
+	public void setOpccarrs(List<Opccarr> opccarrs) {
+		this.opccarrs = opccarrs;
+	}
+
+	public Opccarr addOpccarr(Opccarr opccarr) {
+		getOpccarrs().add(opccarr);
+		opccarr.setStvcarr(this);
+
+		return opccarr;
+	}
+
+	public Opccarr removeOpccarr(Opccarr opccarr) {
+		getOpccarrs().remove(opccarr);
+		opccarr.setStvcarr(null);
+
+		return opccarr;
+	}
 
 }

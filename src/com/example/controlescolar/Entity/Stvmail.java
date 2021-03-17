@@ -20,6 +20,11 @@ public class Stvmail implements Serializable {
 	@Column(name="STVMAIL_DESC")
 	private String stvmailDesc;
 
+	//bi-directional one-to-one association to Sprmail
+	@OneToOne
+	@JoinColumn(name="STVMAIL_TIPO")
+	private Sprmail sprmail;
+
 	public Stvmail() {
 	}
 
@@ -37,6 +42,14 @@ public class Stvmail implements Serializable {
 
 	public void setStvmailDesc(String stvmailDesc) {
 		this.stvmailDesc = stvmailDesc;
+	}
+
+	public Sprmail getSprmail() {
+		return this.sprmail;
+	}
+
+	public void setSprmail(Sprmail sprmail) {
+		this.sprmail = sprmail;
 	}
 
 }

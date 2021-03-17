@@ -2,12 +2,8 @@ package com.example.controlescolar.Entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import com.sun.istack.Nullable;
-
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 
 /**
@@ -48,93 +44,35 @@ public class Spriden implements Serializable {
 	@Column(name="USUARIO_ID")
 	private int usuarioId;
 
+	//bi-directional many-to-one association to Opccarr
+	@OneToMany(mappedBy="spriden",cascade = CascadeType.ALL)
+	private List<Opccarr> opccarrs;
+
+	//bi-directional many-to-one association to Sesion
+	@OneToMany(mappedBy="spriden",cascade = CascadeType.ALL)
+	private List<Sesion> sesions;
 
 	//bi-directional many-to-one association to Spbper
-	@OneToMany
-	@JoinTable(name = "alumnos_datos",joinColumns = @JoinColumn(name = "SPRIDEN_MATRICULA"),
-	inverseJoinColumns = @JoinColumn(name = "SPBPERS_NUMSEQ") )
-	@Nullable
-	private Set<Spbper> spbperss= new HashSet<>();
+	@OneToMany(mappedBy="spriden",cascade = CascadeType.ALL)
+	private List<Spbper> spbpers;
 
 	//bi-directional many-to-one association to Spraddr
-	@OneToMany
-	@Nullable
-	@JoinTable(name = "alumnos_datos",joinColumns = @JoinColumn(name = "SPRIDEN_MATRICULA"),
-	inverseJoinColumns = @JoinColumn(name = "SPRADDR_NUMSEQ"))
-	private Set<Spraddr> spraddrs= new HashSet<>();
+	@OneToMany(mappedBy="spriden",cascade = CascadeType.ALL)
+	private List<Spraddr> spraddrs;
+
+	//bi-directional many-to-one association to Sprmail
+	@OneToMany(mappedBy="spriden")
+	private List<Sprmail> sprmails;
 
 	//bi-directional many-to-one association to Sprtele
-	@OneToMany
-	@Nullable
-	@JoinTable(name = "alumnos_datos",joinColumns = @JoinColumn(name = "SPRIDEN_MATRICULA"),
-	inverseJoinColumns = @JoinColumn(name = "SPRTELE_NUMSEQ"))
-	private Set<Sprtele> sprteles= new HashSet<>();
-
-	
-	@OneToMany
-	@Nullable
-	@JoinTable(name = "alumnos_datos",joinColumns = @JoinColumn(name = "SPRIDEN_MATRICULA"),
-	inverseJoinColumns = @JoinColumn(name="STVCARR_ID", insertable = false, updatable = false))
-	private Set<Stvcarr> stvcarr= new HashSet<>();
-
-	//bi-directional many-to-one association to Stvprep
-	@OneToMany
-	@Nullable
-	@JoinTable(name = "alumnos_datos",joinColumns = @JoinColumn(name = "SPRIDEN_MATRICULA")
-	,inverseJoinColumns = @JoinColumn(name="STVPREP_ID"))
-	private Set<Stvprep> stvprep= new HashSet<>();
-
-	//bi-directional many-to-one association to Stvterm
-	@OneToMany
-	@Nullable
-	@JoinTable(name = "alumnos_datos",joinColumns = @JoinColumn(name = "SPRIDEN_MATRICULA"),
-	inverseJoinColumns = @JoinColumn(name="STVTERM_ID"))
-	private Set<Stvterm> stvterm= new HashSet<>();
-
-	//bi-directional many-to-one association to Stvturn
-	@OneToMany
-	@Nullable
-	@JoinTable(name = "alumnos_datos",joinColumns = @JoinColumn(name = "SPRIDEN_MATRICULA"),
-	inverseJoinColumns =@JoinColumn(name="STVTURN_ID"))
-	private Set<Stvturn> stvturn= new HashSet<>();
-	
-	public Set<Stvcarr> getStvcarr() {
-		return stvcarr;
-	}
-
-	public void setStvcarr(Set<Stvcarr> stvcarr) {
-		this.stvcarr = stvcarr;
-	}
-
-	public Set<Stvprep> getStvprep() {
-		return stvprep;
-	}
-
-	public void setStvprep(Set<Stvprep> stvprep) {
-		this.stvprep = stvprep;
-	}
-
-	public Set<Stvterm> getStvterm() {
-		return stvterm;
-	}
-
-	public void setStvterm(Set<Stvterm> stvterm) {
-		this.stvterm = stvterm;
-	}
-
-	public Set<Stvturn> getStvturn() {
-		return stvturn;
-	}
-
-	public void setStvturn(Set<Stvturn> stvturn) {
-		this.stvturn = stvturn;
-	}
+	@OneToMany(mappedBy="spriden")
+	private List<Sprtele> sprteles;
 
 	public Spriden() {
 	}
 
 	public int getSpridenMatricula() {
-		return spridenMatricula;
+		return this.spridenMatricula;
 	}
 
 	public void setSpridenMatricula(int spridenMatricula) {
@@ -142,7 +80,7 @@ public class Spriden implements Serializable {
 	}
 
 	public Date getSpridenActivityDate() {
-		return spridenActivityDate;
+		return this.spridenActivityDate;
 	}
 
 	public void setSpridenActivityDate(Date spridenActivityDate) {
@@ -150,7 +88,7 @@ public class Spriden implements Serializable {
 	}
 
 	public String getSpridenAp() {
-		return spridenAp;
+		return this.spridenAp;
 	}
 
 	public void setSpridenAp(String spridenAp) {
@@ -158,7 +96,7 @@ public class Spriden implements Serializable {
 	}
 
 	public String getSpridenApm() {
-		return spridenApm;
+		return this.spridenApm;
 	}
 
 	public void setSpridenApm(String spridenApm) {
@@ -166,7 +104,7 @@ public class Spriden implements Serializable {
 	}
 
 	public String getSpridenCurp() {
-		return spridenCurp;
+		return this.spridenCurp;
 	}
 
 	public void setSpridenCurp(String spridenCurp) {
@@ -174,7 +112,7 @@ public class Spriden implements Serializable {
 	}
 
 	public String getSpridenFlag() {
-		return spridenFlag;
+		return this.spridenFlag;
 	}
 
 	public void setSpridenFlag(String spridenFlag) {
@@ -182,7 +120,7 @@ public class Spriden implements Serializable {
 	}
 
 	public String getSpridenNombre() {
-		return spridenNombre;
+		return this.spridenNombre;
 	}
 
 	public void setSpridenNombre(String spridenNombre) {
@@ -190,7 +128,7 @@ public class Spriden implements Serializable {
 	}
 
 	public int getSridenUser() {
-		return sridenUser;
+		return this.sridenUser;
 	}
 
 	public void setSridenUser(int sridenUser) {
@@ -198,39 +136,143 @@ public class Spriden implements Serializable {
 	}
 
 	public int getUsuarioId() {
-		return usuarioId;
+		return this.usuarioId;
 	}
 
 	public void setUsuarioId(int usuarioId) {
 		this.usuarioId = usuarioId;
 	}
 
-	
-
-	public Set<Spraddr> getSpraddrs() {
-		return spraddrs;
+	public List<Opccarr> getOpccarrs() {
+		return this.opccarrs;
 	}
 
-	public void setSpraddrs(Set<Spraddr> spraddrs) {
+	public void setOpccarrs(List<Opccarr> opccarrs) {
+		this.opccarrs = opccarrs;
+	}
+
+	public Opccarr addOpccarr(Opccarr opccarr) {
+		getOpccarrs().add(opccarr);
+		opccarr.setSpriden(this);
+
+		return opccarr;
+	}
+
+	public Opccarr removeOpccarr(Opccarr opccarr) {
+		getOpccarrs().remove(opccarr);
+		opccarr.setSpriden(null);
+
+		return opccarr;
+	}
+
+	public List<Sesion> getSesions() {
+		return this.sesions;
+	}
+
+	public void setSesions(List<Sesion> sesions) {
+		this.sesions = sesions;
+	}
+
+	public Sesion addSesion(Sesion sesion) {
+		getSesions().add(sesion);
+		sesion.setSpriden(this);
+
+		return sesion;
+	}
+
+	public Sesion removeSesion(Sesion sesion) {
+		getSesions().remove(sesion);
+		sesion.setSpriden(null);
+
+		return sesion;
+	}
+
+	public List<Spbper> getSpbpers() {
+		return this.spbpers;
+	}
+
+	public void setSpbpers(List<Spbper> spbpers) {
+		this.spbpers = spbpers;
+	}
+
+	public Spbper addSpbper(Spbper spbper) {
+		getSpbpers().add(spbper);
+		spbper.setSpriden(this);
+
+		return spbper;
+	}
+
+	public Spbper removeSpbper(Spbper spbper) {
+		getSpbpers().remove(spbper);
+		spbper.setSpriden(null);
+
+		return spbper;
+	}
+
+	public List<Spraddr> getSpraddrs() {
+		return this.spraddrs;
+	}
+
+	public void setSpraddrs(List<Spraddr> spraddrs) {
 		this.spraddrs = spraddrs;
 	}
 
-	public Set<Sprtele> getSprteles() {
-		return sprteles;
+	public Spraddr addSpraddr(Spraddr spraddr) {
+		getSpraddrs().add(spraddr);
+		spraddr.setSpriden(this);
+
+		return spraddr;
 	}
 
-	public void setSprteles(Set<Sprtele> sprteles) {
+	public Spraddr removeSpraddr(Spraddr spraddr) {
+		getSpraddrs().remove(spraddr);
+		spraddr.setSpriden(null);
+
+		return spraddr;
+	}
+
+	public List<Sprmail> getSprmails() {
+		return this.sprmails;
+	}
+
+	public void setSprmails(List<Sprmail> sprmails) {
+		this.sprmails = sprmails;
+	}
+
+	public Sprmail addSprmail(Sprmail sprmail) {
+		getSprmails().add(sprmail);
+		sprmail.setSpriden(this);
+
+		return sprmail;
+	}
+
+	public Sprmail removeSprmail(Sprmail sprmail) {
+		getSprmails().remove(sprmail);
+		sprmail.setSpriden(null);
+
+		return sprmail;
+	}
+
+	public List<Sprtele> getSprteles() {
+		return this.sprteles;
+	}
+
+	public void setSprteles(List<Sprtele> sprteles) {
 		this.sprteles = sprteles;
 	}
 
-	public Set<Spbper> getSpbperss() {
-		return spbperss;
+	public Sprtele addSprtele(Sprtele sprtele) {
+		getSprteles().add(sprtele);
+		sprtele.setSpriden(this);
+
+		return sprtele;
 	}
 
-	public void setSpbperss(Set<Spbper> spbperss) {
-		this.spbperss = spbperss;
-	}
+	public Sprtele removeSprtele(Sprtele sprtele) {
+		getSprteles().remove(sprtele);
+		sprtele.setSpriden(null);
 
-	
+		return sprtele;
+	}
 
 }
